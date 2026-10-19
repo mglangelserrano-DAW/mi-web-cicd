@@ -13,8 +13,11 @@ const server = http.createServer((req, res) => {
   }));
 });
 
-server.listen(PORT, () => {
-  console.log(`Servidor activo en http://localhost:${PORT}`);
-});
+// Solo escucha en el puerto 3000 si el archivo se ejecuta directamente
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`Servidor activo en http://localhost:${PORT}`);
+  });
+}
 
 module.exports = server;
