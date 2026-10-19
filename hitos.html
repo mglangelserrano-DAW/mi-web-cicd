@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Avances de la Ciberseguridad a partir del año 2020</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #151d30;
+            --accent-color: #00f2fe;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 800px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Contenedor de la línea de tiempo */
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            width: 90%;
+            margin: 40px 0;
+            padding-left: 20px;
+            border-left: 4px solid var(--card-bg);
+        }
+
+        /* Hitos individuales */
+        .milestone {
+            position: relative;
+            margin-bottom: 40px;
+            cursor: pointer;
+        }
+
+        /* Punto en la línea de tiempo */
+        .milestone::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 24px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 3px solid var(--bg-color);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .milestone:hover::before,
+        .milestone.active::before {
+            background-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Encabezado del hito (año y título) */
+        .milestone-header {
+            background-color: var(--card-bg);
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .milestone-header:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .milestone:hover .milestone-header {
+            border-color: rgba(0, 242, 254, 0.3);
+            transform: translateX(5px);
+        }
+
+        .milestone.active .milestone-header {
+            border-color: var(--accent-color);
+            background: linear-gradient(90deg, #151d30 0%, #1e2942 100%);
+        }
+
+        .year {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            min-width: 80px;
+        }
+
+        .title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+
+        .icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .milestone.active .icon {
+            transform: rotate(180deg);
+        }
+
+        /* Contenido desplegable */
+        .milestone-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
+            background-color: rgba(21, 29, 48, 0.4);
+            margin: 0 5px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            padding: 0 25px;
+        }
+
+        .milestone.active .milestone-content {
+            max-height: 500px;
+            padding: 20px 25px;
+            border-left: 1px solid var(--accent-color);
+            border-right: 1px solid var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .milestone-content p {
+            margin: 0;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .milestone-header { padding: 12px 15px; }
+            .year { min-width: 60px; font-size: 1.1rem; }
+            .title { font-size: 1rem; margin-left: 10px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Los grandes avances de la Ciberseguridad</h1>
+        <p>Explora la historia de la ciberseguridad del siglo XXI. Haz clic en cada evento para profundizar en el impacto de sus avances y los detalles técnicos que mejoraron el entorno digital global.</p>
+    </header>
+
+    <div class="timeline-container">
+
+        <!-- Avance 1 -->
+        <div class="milestone">
+            <div class="milestone-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="year">2020</span>
+                <span class="title">Consolidación de la Arquitectura Zero Trust (Confianza Cero)</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="milestone-content">
+                <p>El viejo modelo de seguridad protegía el perímetro de la red (como el router de una oficina), pero asumía que todo lo que estaba dentro era seguro. Con el auge del trabajo remoto a partir de 2020, este sistema quedó obsoleto. <span class="highlight">Zero Trust cambió las reglas de los sistemas operativos y navegadores bajo el principio de "nunca confiar, siempre verificar".</span>, duplicando su tamaño cada 8.5 segundos. Consiguió ralentizar el tráfico global de internet, colapsó cajeros automáticos en EE. UU. y provocó la cancelación masiva de vuelos. Demostró la vulnerabilidad de la infraestructura de red global ante códigos maliciosos ultraveloces y obligó a replantear las estrategias corporativas de parches de seguridad.Zero Trust cambió las reglas de los sistemas operativos y navegadores bajo el principio de "nunca confiar, siempre verificar". Ahora, los ordenadores validan constantemente la identidad del usuario, el estado del dispositivo y sus permisos antes de dar acceso a cualquier recurso en internet.</p>
+            </div>
+        </div>
+
+        <!-- Avance 2 -->
+        <div class="milestone">
+            <div class="milestone-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="year">2022</span>
+                <span class="title">Estandarización de la Criptografía Post-Cuántica (PQC)</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="milestone-content">
+                <p>Aunque los ordenadores cuánticos comerciales todavía están en desarrollo, los algoritmos tradicionales de cifrado de internet (como RSA) corren el riesgo de ser vulnerados en el futuro. A partir de 2022, agencias internacionales y gigantes tecnológicos comenzaron a estandarizar e implementar los primeros<span class="highlight">algoritmos criptográficos post-cuánticos</span>. Esto asegura que las comunicaciones y datos guardados en los ordenadores de hoy estén blindados contra los descifrados mediante computación cuántica. <span class="highlight">PCI DSS</span>.</p>
+            </div>
+        </div>
+
+        <!-- Avance 3 -->
+        <div class="milestone">
+            <div class="milestone-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="year">2020</span>
+                <span class="title">Sistemas de Detección y Respuesta Automatizada por IA (SOAR)</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="milestone-content">
+                <p>Los ciberataques modernos ocurren a velocidades que los humanos no pueden mitigar en tiempo real. El gran avance desde 2020 ha sido la integración nativa de <span class="highlight">Inteligencia Artificial y Machine Learning</span> en las defensas del ordenador. Herramientas de automatización como los sistemas SOAR permiten a los equipos de seguridad analizar millones de datos de internet, predecir amenazas y aislar automáticamente un ordenador infectado de la red en cuestión de segundos,  <span class="highlight">reduciendo el tiempo de respuesta hasta en un 95%</span>.</p>
+            </div>
+        </div>
+
+        <!-- Avance 4 -->
+        <div class="milestone">
+            <div class="milestone-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="year">2020</span>
+                <span class="title">Seguridad a nivel de Hardware y Enclaves Seguros</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="milestone-content">
+                <p>Los parches de software ya no bastan si el atacante logra vulnerar el sistema operativo. A partir de 2020, se volvió obligatorio el uso de chips de seguridad físicos integrados en las placas base de los ordenadores (como el chip <span class="highlight">TPM 2.0</span>en Windows o el coprocesador<span class="highlight">Secure Enclave</span>en Apple). Estos componentes aíslan las operaciones criptográficas más críticas, las contraseñas y los datos biométricos del resto del sistema, impidiendo que el malware que entra por internet pueda robar las claves de acceso de los componentes físicos.</p>
+            </div>
+        </div>
+
+        <!-- Avance 5 -->
+        <div class="milestone">
+            <div class="milestone-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="year">2020</span>
+                <span class="title">Autenticación sin Contraseñas mediante Passkeys (FIDO2)</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="milestone-content">
+                <p>Las contraseñas tradicionales son el eslabón más débil frente a los ataques de phishing en la web. En 2022, la alianza FIDO (respaldada por Google, Apple y Microsoft) lanzó oficialmente las  <span class="highlight">Passkeys</span> (claves de paso). Este avance sustituye las contraseñas por claves criptográficas únicas almacenadas localmente en el ordenador. El usuario se conecta a internet validándose únicamente con la biometría de su ordenador (huella dactilar o reconocimiento facial), eliminando la posibilidad de que intercepten o adivinen sus credenciales a través de la red.</p>
+            </div>
+        </div>
+
+        <!-- Hito 6 
+        <div class="milestone">
+            <div class="milestone-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="year">2017</span>
+                <span class="title">El ciberataque NotPetya y las pérdidas billonarias</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="milestone-content">
+                <p>Disfrazado de ransomware, NotPetya era en realidad un <span class="highlight">malware destructivo</span> que se propagó a través de una actualización comprometida de un programa de contabilidad ucraniano y aprovechó el exploit EternalBlue filtrado un año antes. Paralizó a empresas como Maersk, Merck y FedEx, con <span class="highlight">pérdidas globales estimadas en más de 10.000 millones de dólares</span>. Se atribuyó a un grupo de hackers militares rusos y es considerado uno de los ciberataques más costosos de la historia.</p>
+            </div>
+        </div>
+    -->
+
+        <!-- Hito 7 
+        <div class="milestone">
+            <div class="milestone-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="year">2020</span>
+                <span class="title">El ataque a la cadena de suministro de SolarWinds</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="milestone-content">
+                <p>Los atacantes introdujeron código malicioso en una actualización legítima del software Orion de SolarWinds, que llegó a <span class="highlight">unos 18.000 clientes</span>, entre ellos agencias del gobierno de EE. UU. y grandes empresas tecnológicas. Pasó desapercibido durante meses y se atribuyó a un grupo vinculado a Rusia. Demostró que <span class="highlight">confiar en un proveedor no es suficiente</span> y situó la seguridad de la cadena de suministro de software en el centro del debate.</p>
+            </div>
+        </div>
+             -->
+        <!-- Hito 8 
+        <div class="milestone">
+            <div class="milestone-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="year">2021</span>
+                <span class="title">El ransomware contra Colonial Pipeline</span>
+                <span class="icon">▼</span>
+            </div>
+            <div class="milestone-content">
+                <p>El grupo criminal DarkSide cifró los sistemas de gestión de Colonial Pipeline, la mayor red de oleoductos de combustible de EE. UU., que suministra cerca de <span class="highlight">la mitad del combustible de la costa este</span>. La empresa detuvo la distribución por precaución, lo que provocó escasez y compras de pánico en varios estados. Pagó un rescate de unos 4,4 millones de dólares en bitcoin, parte del cual recuperó después el FBI. Mostró que un <span class="highlight">ciberataque a infraestructuras críticas</span> tiene consecuencias directas en la vida cotidiana.</p>
+            </div>
+        </div>
+       --->
+    </div>
+
+    <script>
+        // Abre o cierra un hito (se cierra el resto para mantener la lectura ordenada)
+        function toggleMilestone(milestone) {
+            const isActive = milestone.classList.contains('active');
+
+            document.querySelectorAll('.milestone.active').forEach(function (item) {
+                item.classList.remove('active');
+                item.querySelector('.milestone-header').setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isActive) {
+                milestone.classList.add('active');
+                milestone.querySelector('.milestone-header').setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        document.querySelectorAll('.milestone').forEach(function (milestone) {
+            const header = milestone.querySelector('.milestone-header');
+
+            milestone.addEventListener('click', function () {
+                toggleMilestone(milestone);
+            });
+
+            // Accesibilidad: abrir con Enter o Espacio
+            header.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleMilestone(milestone);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
