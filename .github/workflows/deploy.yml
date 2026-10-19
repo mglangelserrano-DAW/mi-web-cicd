@@ -1,0 +1,38 @@
+name: Integracion y Despliegue Continuo (CI/CD)
+
+# Disparador: Se ejecuta automáticamente en cada push sobre la rama main
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  # TRABAJO 1: Ejecutar pruebas automáticas
+  pruebas:
+    name: Ejecutar Tests Unitarios
+    runs-on: ubuntu-latest
+    steps:
+      # Paso 1: Descargar el código fuente del repositorio en el runner
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+      # Paso 2: Configurar el entorno de Node.js
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      # Paso 3: Instalar dependencias si las hubiera
+      - name: Instalar dependencias
+        run: npm install
+      # Paso 4: Ejecutar la batería de tests
+      - name: Lanzar pruebas unitarias
+        run: npm test
+
+  # TRABAJO 2: Construir la imagen de contenedor si los tests fueron superados
+  construir_docker:
+    name: Construccion de Imagen Docker
+    needs: pruebas
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+      - name: Construir la imagen Docker de la aplicacion
+        run: docker build -t mi-web-node:latest .
